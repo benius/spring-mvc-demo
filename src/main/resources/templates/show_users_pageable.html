@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Users Information (Pageable)</title>
+
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<!--/*@thymesVar id="users" type="Iterable<hello.User>"*/-->
+<!--/*@thymesVar id="user" type="hello.User"*/-->
+<!--/*@thymesVar id="page" type="org.springframework.data.domain.Page"*/-->
+
+
+<div class="container">
+    <div>
+        <a th:href="@{/user/form/create}">Create User</a>
+    </div>
+
+    <h1>Users Information (Pageable)</h1>
+
+    <table>
+        <tbody>
+
+        <tr>
+            <td>ID</td>
+            <td>NAME</td>
+            <td>EMAIL</td>
+        </tr>
+
+        <tr th:each="user : ${users}">
+            <td th:text="${user.id}">id</td>
+            <td th:text="${user.name}">name</td>
+            <td th:text="${user.email}">email</td>
+        </tr>
+
+        </tbody>
+        <tfoot>
+        <tr>
+            <td colspan="3">
+                <ul class="pagination">
+                    <li th:class="${page.number eq 0} ? 'disabled' : ''">
+                        <a th:if="${not page.first}" th:href="@{'/user/form/page/' + ${page.number - 1} + '/' + ${page.size}}">Previous</a>
+                        <!--<a th:if="${not page.first}" th:href="@{${'/contacts'}(page=${page.number - 1},size=${page.size})}">Previous</a>-->
+                        <a th:if="${page.first}" href="javascript:void(0);">Previous</a>
+                    </li>
+
+                    <li th:each="pageNo : ${#numbers.sequence(0, page.totalPages - 1)}" th:class="${page.number eq pageNo}? 'active' : ''">
+                        <a th:if="${page.number eq pageNo}" href="javascript:void(0);">
+                            <span th:text="${pageNo + 1}"></span>
+                        </a>
+                        <a th:if="${not (page.number eq pageNo)}" th:href="@{'/user/form/page/' + ${pageNo} + '/' + ${page.size}}">
+                            <span th:text="${pageNo + 1}"></span>
+                        </a>
+                        <!--<a th:if="${not (page.number eq pageNo)}" th:href="@{${'/contacts'}(page=${pageNo},size=${page.size})}">-->
+                            <!--<span th:text="${pageNo + 1}"></span>-->
+                        <!--</a>-->
+
+                    </li>
+                    <li th:class="${page.number + 1 ge page.totalPages} ? 'disabled' : ''">
+                        <a th:if="${not page.last}" th:href="@{'/user/form/page/' + ${page.number + 1} + '/' + ${page.size}}">Next</a>
+                        <!--<a th:if="${not page.last}" th:href="@{${'/contacts'}(page=${page.number + 1},size=${page.size})}">Next</a>-->
+                        <a th:if="${page.last}" href="javascript:void(0);">Next</a>
+                    </li>
+                </ul>
+
+                <!--<ul class="pagination pagination-lg">-->
+                    <!--&lt;!&ndash; 上一页 &ndash;&gt;-->
+                    <!--<li class="page-item" data-th-classappend="${page.first} ? 'disabled' : ''">-->
+                        <!--<a href="javascript:void(0);" class="page-link" data-th-attr="pageIndex=${page.number} - 1" aria-label="Previous">-->
+                            <!--<span aria-hidden="true">«</span>-->
+                        <!--</a>-->
+                    <!--</li>-->
+
+                    <!--&lt;!&ndash; 迭代生成页码 &ndash;&gt;-->
+                    <!--<li class="page-item" data-th-each="i : ${#numbers.sequence(1, page.totalPages)}"-->
+                            <!--data-th-classappend="${(page.number + 1) eq i} ? 'active' : ''">-->
+                        <!--<a class="page-link" data-th-attr="pageIndex=${i} - 1" href="javascript:void(0);">-->
+                            <!--<span data-th-text="${i}"></span>-->
+                        <!--</a>-->
+                    <!--</li>-->
+
+                    <!--&lt;!&ndash; 下一页 &ndash;&gt;-->
+                    <!--<li class="page-item" data-th-classappend="${page.last} ? 'disabled' : ''">-->
+                        <!--<a href="javascript:void(0);" class="page-link" data-th-attr="pageIndex=${page.number} + 1" aria-label="Next">-->
+                            <!--<span aria-hidden="true">»</span>-->
+                        <!--</a>-->
+                    <!--</li>-->
+                <!--</ul>-->
+            </td>
+        </tr>
+        </tfoot>
+    </table>
+</div>
+
+</body>
+</html>

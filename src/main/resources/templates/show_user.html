@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>User Information</title>
+</head>
+<body>
+
+<h1>User Information</h1>
+
+<!--/*@thymesVar id="user" type="hello.User"*/-->
+<p th:text="'id: ' + ${user.id}"></p>
+<p th:text="'name: ' + ${user.name}"></p>
+<p th:text="'email: ' + ${user.email}"></p>
+
+<div>
+    <a th:href="@{/user/form/create}">Create User</a>
+</div>
+
+<div>
+    <a th:href="@{/user/form/all}">Show All Users</a>
+</div>
+
+<div>
+    <a th:href="@{/user/form/page/0/20}">Show Users (Pageable)</a>
+</div>
+
+
+</body>
+</html>

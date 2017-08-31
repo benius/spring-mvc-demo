@@ -1,0 +1,29 @@
+// Remember to set the following content type to request header:
+// Content-Type: application/json;charset=UTF-8
+
+[
+  {
+    "user-name": "Anna",
+    "user-email": "anna@mail.com"
+  },
+  {
+    "user-name": "Hunter",
+    "user-email": "hunter@mail.com"
+  },
+  {
+    "user-name": "Eva",
+    "user-email": "eva@mail.com"
+  },
+  {
+    "user-name": "Connor",
+    "user-email": "connor@mail.com"
+  },
+  {
+    "user-name": "Leah",
+    "user-email": "leah@mail.com"
+  },
+  {
+    "user-name": "Mateo",
+    "user-email": "mateo@mail.com"
+  }
+]

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>User Information</title>
+</head>
+<body>
+
+<div>
+    <a th:href="@{/user/form/create}">Create User</a>
+</div>
+
+<div>
+    <a th:href="@{/user/form/page/0/20}">Show Users (Pageable)</a>
+</div>
+
+<h1>All Users Information</h1>
+
+<!--/*@thymesVar id="users" type="Iterable<hello.User>"*/-->
+<!--/*@thymesVar id="user" type="hello.User"*/-->
+
+<table>
+    <tr>
+        <td>ID</td>
+        <td>NAME</td>
+        <td>EMAIL</td>
+    </tr>
+    <tr th:each="user : ${users}">
+        <td th:text="${user.id}">id</td>
+        <td th:text="${user.name}">name</td>
+        <td th:text="${user.email}">email</td>
+    </tr>
+</table>
+
+</body>
+</html>
